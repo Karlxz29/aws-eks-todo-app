@@ -1,0 +1,24 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.json());
+
+mongoose.connect('mongodb://localhost:27017/todo-db', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const TodoSchema = new mongoose.Schema({ task: String });
+const Todo = mongoose.model('Todo', TodoSchema);
+
+app.get('/', (req, res) => res.send('Todo App - Khoa DevOps Intern 2026'));
+
+app.get('/todos', async (req, res) => res.json(await Todo.find()));
+
+app.post('/todos', async (req, res) => {
+  const todo = new Todo({ task: req.body.task });
+  await todo.save();
+  res.json(todo);
+});
+
+app.listen(port, () => console.log(`App running on http://localhost:${port}`));
