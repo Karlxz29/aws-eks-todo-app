@@ -17,7 +17,7 @@ const Todo = mongoose.model('Todo', TodoSchema);
 
 // Trang chủ
 app.get('/', (req, res) => {
-  res.send('Todo App v4 - Khoa DevOps Intern 2026 - Test CI/CD thành công!');
+  res.send('Todo App v6 - Khoa DevOps Intern 2026 - Test CI/CD thành công!');
 });
 
 // Lấy tất cả todos
